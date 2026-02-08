@@ -1,0 +1,22 @@
+{
+  "tasks": {
+    "start": "deno run --allow-net --allow-env --allow-read --allow-run --allow-write --v8-flags=--max-old-space-size=4096 server.ts",
+    "dev": "deno run --allow-net --allow-env --allow-read --allow-run --allow-write --v8-flags=--max-old-space-size=4096 --watch server.ts"
+  },
+  "imports": {
+    "@types/cors": "npm:@types/cors@^2.8.19",
+    "@types/express": "npm:@types/express@^5.0.6",
+    "compression": "npm:compression@^1.8.1",
+    "express": "npm:express@4",
+    "cors": "npm:cors@2",
+    "dotenv/config": "https://deno.land/std@0.215.0/dotenv/mod.ts"
+  },
+  "compilerOptions": {
+    "lib": [
+      "deno.window",
+      "dom"
+    ],
+    "strict": true
+  },
+  "nodeModulesDir": "auto"
+}

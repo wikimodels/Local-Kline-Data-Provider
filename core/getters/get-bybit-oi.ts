@@ -89,11 +89,24 @@ async function fetchCoinOI(
         },
       });
 
-      if (!response.ok)
-        throw new Error(`HTTP ${response.status}: ${await response.text()}`);
+      // Log detailed error if response is not OK
+      if (!response.ok) {
+        const errorText = await response.text();
+        const error = new Error(`HTTP ${response.status}: ${errorText}`);
+
+        const { logBybitApiError } = await import("../utils/error-logger.ts");
+        await logBybitApiError(symbol, requestUrl, response.status, errorText);
+
+        throw error;
+      }
 
       const rawData: any = await response.json();
+
+      // Log detailed error if response structure is invalid
       if (!rawData?.result?.list || !Array.isArray(rawData.result.list)) {
+        const { logBybitApiError } = await import("../utils/error-logger.ts");
+        await logBybitApiError(symbol, requestUrl, response.status, rawData);
+
         throw new Error(`Invalid Bybit response for ${symbol}`);
       }
 
@@ -162,8 +175,7 @@ async function fetchInBatches<T>(
     results.push(...batchResults);
 
     logger.info(
-      `[BYBIT OI] Прогресс: ${Math.min(i + batchSize, items.length)}/${
-        items.length
+      `[BYBIT OI] Прогресс: ${Math.min(i + batchSize, items.length)}/${items.length
       } (Batch: ${batchSize})`,
       DColors.cyan,
     );

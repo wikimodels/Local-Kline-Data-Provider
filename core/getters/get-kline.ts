@@ -156,12 +156,28 @@ async function fetchBybitKlineData(
       Accept: "application/json",
     },
   });
-  if (!response.ok)
-    throw new Error(`HTTP ${response.status}: ${await response.text()}`);
+
+  // Log detailed error if response is not OK
+  if (!response.ok) {
+    const errorText = await response.text();
+    const error = new Error(`HTTP ${response.status}: ${errorText}`);
+
+    // Import error logger dynamically to avoid circular deps
+    const { logBybitApiError } = await import("../utils/error-logger.ts");
+    await logBybitApiError(symbol, url, response.status, errorText);
+
+    throw error;
+  }
 
   const rawData: any = await response.json();
-  if (!rawData?.result?.list)
+
+  // Log detailed error if response structure is invalid
+  if (!rawData?.result?.list) {
+    const { logBybitApiError } = await import("../utils/error-logger.ts");
+    await logBybitApiError(symbol, url, response.status, rawData);
+
     throw new Error(`Invalid Bybit response for ${symbol}`);
+  }
 
   let klines = rawData.result.list;
   if (klines.length === 0) throw new Error(`No data for ${symbol}`);
@@ -239,8 +255,7 @@ async function fetchInBatches<T>(
     results.push(...batchResults);
 
     logger.info(
-      `[${label}] Progress: ${Math.min(i + batchSize, items.length)}/${
-        items.length
+      `[${label}] Progress: ${Math.min(i + batchSize, items.length)}/${items.length
       } (Batch: ${batchSize})`,
       DColors.cyan,
     );

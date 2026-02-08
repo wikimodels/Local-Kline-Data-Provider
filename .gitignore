@@ -17,3 +17,7 @@ Thumbs.db
 yarn-debug.log
 yarn-error.log
 render.yaml
+
+# Error logs
+logs/
+error-logs.txt

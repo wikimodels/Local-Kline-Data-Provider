@@ -1,7 +1,8 @@
 {
   "tasks": {
-    "start": "deno run --allow-net --allow-env --allow-read --allow-run --allow-write --v8-flags=--max-old-space-size=4096 server.ts",
-    "dev": "deno run --allow-net --allow-env --allow-read --allow-run --allow-write --v8-flags=--max-old-space-size=4096 --watch server.ts"
+    "start": "deno run --unstable-cron --allow-net --allow-env --allow-read --allow-run --allow-write --v8-flags=--max-old-space-size=4096 server.ts",
+    "dev": "deno run --unstable-cron --allow-net --allow-env --allow-read --allow-run --allow-write --v8-flags=--max-old-space-size=4096 --watch server.ts",
+    "cron": "deno run --allow-net --allow-env --allow-read cron.ts"
   },
   "imports": {
     "@types/cors": "npm:@types/cors@^2.8.19",

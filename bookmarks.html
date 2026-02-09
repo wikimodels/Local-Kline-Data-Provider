@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kline Server Control</title>
+    <!-- Favicon: Forced refresh with version param -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico?v=2">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* T-Rex Palette Idea: 
+               Deep Void Black (Background)
+               Toxic Purple (Primary Accent)
+               Warning Yellow (Secondary/Highlight)
+            */
+            --bg-deep: #020202;
+            /* Almost pure black */
+            --bg-card: #050505;
+            /* Matching the logo background */
+
+            /* Enhanced Purples */
+            --purple-glow: #7c3aed;
+            --purple-dark: #5b21b6;
+            --purple-vivid: #8b5cf6;
+
+            /* Enhanced Yellows/Golds */
+            --yellow-toxic: #facc15;
+            --yellow-dark: #ca8a04;
+
+            --text-primary: #ffffff;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-deep);
+            /* Very subtle ambient light */
+            background-image:
+                radial-gradient(circle at 50% 0%, #170d2b 0%, var(--bg-deep) 70%);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            /* Match logo background exactly */
+            background: #000000;
+            padding: 56px;
+            border-radius: 32px;
+            /* Subtle border only, no heavy glow */
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+            max-width: 440px;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Subtle top highlight on card */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        .logo-container {
+            margin-bottom: 32px;
+            position: relative;
+            display: inline-block;
+            border-radius: 50%;
+            /* NO GLOW as requested */
+            box-shadow: none;
+            background: #000000;
+            /* Ensure same bg behind logo */
+        }
+
+        .logo {
+            width: 96px;
+            height: 96px;
+            object-fit: cover;
+            border-radius: 50%;
+
+            display: block;
+            position: relative;
+            z-index: 10;
+
+            image-rendering: -webkit-optimize-contrast;
+
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Overlay removed/simplified to avoid 'shine' if user wants flat blending */
+        .logo-container::after {
+            display: none;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-8px) scale(1.02);
+            }
+        }
+
+        h1 {
+            font-weight: 700;
+            font-size: 28px;
+            margin: 0 0 48px 0;
+            letter-spacing: -0.5px;
+            /* Gradient Text matching logo */
+            background: linear-gradient(135deg, #fff 30%, var(--purple-vivid) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .btn {
+            position: relative;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 20px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none;
+            text-decoration: none;
+        }
+
+        /* START BUTTON: Purple/Neon Theme */
+        .btn-start {
+            background: linear-gradient(135deg, var(--purple-dark), #4c1d95);
+            color: #fff;
+            box-shadow:
+                0 4px 6px -1px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.5);
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 20px 25px -5px rgba(109, 40, 217, 0.4),
+                0 0 30px rgba(139, 92, 246, 0.6);
+            /* Purple Glow */
+            border-color: var(--purple-vivid);
+        }
+
+        .btn-start svg {
+            color: var(--yellow-toxic);
+        }
+
+        /* Yellow icon on purple button */
+
+        /* STOP BUTTON: Dark/Danger Theme */
+        .btn-stop {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-stop:hover {
+            background: rgba(220, 38, 38, 0.1);
+            color: #ef4444;
+            /* Red text on hover */
+            border-color: #ef4444;
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Ripple Effect */
+        span.ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 600ms linear;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .hint {
+            margin-top: 40px;
+            font-size: 13px;
+            color: var(--text-muted);
+            opacity: 0.6;
+            font-family: 'Inter', sans-serif;
+            /* Keep hint readable */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="logo-container">
+            <img src="favicon.ico" alt="Logo" class="logo">
+        </div>
+        <h1>SERVER CONTROL</h1>
+
+        <div class="btn-group">
+            <button class="btn btn-start" onclick="handleAction(event, 'kline-start://run')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                LAUNCH SERVER
+            </button>
+
+            <button class="btn btn-stop" onclick="handleAction(event, 'kline-stop://run')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                </svg>
+                KILL PROCESS
+            </button>
+        </div>
+
+        <p class="hint">
+            Drag these to bookmarks: <br><br>
+            <a href="kline-start://run"
+                style="color: var(--yellow-toxic); text-decoration: none; font-weight: 700; letter-spacing: 0.5px;">⚡
+                START</a>
+            <span style="margin: 0 10px; opacity: 0.3">|</span>
+            <a href="kline-stop://run"
+                style="color: var(--text-muted); text-decoration: none; font-weight: 700; transition: color 0.2s"
+                onmouseover="this.style.color='#ef4444'" onmouseout="this.style.color='var(--text-muted)'">💀 STOP</a>
+        </p>
+    </div>
+
+    <script>
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const circle = document.createElement("span");
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
+            const rect = button.getBoundingClientRect();
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - rect.left - radius}px`;
+            circle.style.top = `${event.clientY - rect.top - radius}px`;
+            circle.classList.add("ripple");
+            const existingRipple = button.getElementsByClassName("ripple")[0];
+            if (existingRipple) existingRipple.remove();
+            button.appendChild(circle);
+        }
+
+        function handleAction(event, url) {
+            createRipple(event);
+            setTimeout(() => {
+                window.location.href = url;
+            }, 350);
+        }
+    </script>
+
+</body>
+
+</html>

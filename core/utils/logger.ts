@@ -8,10 +8,10 @@ import {
   gray,
   bold,
 } from "npm:colorette@2.0.20";
-import { DColors } from "../../models/types.ts"; // Убедись, что путь к types.ts верный
+import { DColors } from "../../models/types.ts";
 import { CONFIG } from "../../config.ts";
-// Маппинг твоих DColors (которые "color: #...") на функции colorette
-// Мы используем ключи enum (строки), а не их значения
+import { telegramBot } from "./telegram-bot.ts"; // Import TelegramBot singleton
+
 const colorMap: Record<string, (text: string | number) => string> = {
   [DColors.red]: red,
   [DColors.green]: green,
@@ -22,14 +22,13 @@ const colorMap: Record<string, (text: string | number) => string> = {
 };
 
 class Logger {
-  private projectName = bold(CONFIG.PROJECT_NAME); // Используем bold
+  private projectName = bold(CONFIG.PROJECT_NAME);
 
   private log(
     message: string,
     colorEnum: DColors,
     logFn: (msg: string) => void = console.log,
   ) {
-    // Находим функцию цвета по значению enum (т.е. по строке "color: #...")
     const colorFunc = colorMap[colorEnum] || white;
     logFn(colorFunc(`[${this.projectName}] ${message}`));
   }
@@ -42,32 +41,24 @@ class Logger {
     this.log(message, color, console.warn);
   }
 
-  /**
-   * ИСПРАВЛЕННЫЙ метод error.
-   * Он больше не принимает DColors в качестве второго аргумента.
-   * Вместо этого он принимает настоящий объект ошибки (error?: unknown).
-   */
   public error(message: string, error?: unknown): void {
-    const colorFunc = colorMap[DColors.red]; // Всегда красный для ошибок
+    const colorFunc = colorMap[DColors.red];
     console.error(colorFunc(bold(`[${this.projectName}] ✗ ERROR: ${message}`)));
 
     if (error) {
-      // Если передан объект ошибки, выводим его
       if (error instanceof Error) {
         console.error(
           colorFunc(`[${this.projectName}]   Details: ${error.message}`),
         );
-        // Раскомментируй, если нужен полный stack trace
-        // if (error.stack) {
-        //   console.error(gray(error.stack));
-        // }
       } else {
-        // Если передано что-то другое (например, строка)
         console.error(
           colorFunc(`[${this.projectName}]   Details: ${String(error)}`),
         );
       }
     }
+
+    // Send error notification to Telegram
+    telegramBot.notifyError(message, error);
   }
 
   public success(message: string, color: DColors): void {
@@ -75,5 +66,4 @@ class Logger {
   }
 }
 
-// Экспортируем один экземпляр
 export const logger = new Logger();

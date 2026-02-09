@@ -9,6 +9,7 @@ import compression from "npm:compression";
 import { DataStore } from "./store/store.ts";
 import { logger } from "./core/utils/logger.ts";
 import { DColors, TF, JobResult, CoinMarketData } from "./models/types.ts";
+import { telegramBot } from "./core/utils/telegram-bot.ts"; // Import TelegramBot
 
 // Import jobs
 import { run1hJob } from "./jobs/job-1h.ts";
@@ -45,12 +46,46 @@ if (!NGROK_URL) {
 const app = express();
 
 // Enable compression for all responses
-app.use(compression({
-  level: 6, // Compression level (0-9, 6 is good balance)
-  threshold: 1024, // Only compress responses > 1KB
-}));
+app.use(
+  compression({
+    level: 6, // Compression level (0-9, 6 is good balance)
+    threshold: 1024, // Only compress responses > 1KB
+  }),
+);
 
-app.use(cors());
+// --- CORS CONFIGURATION ---
+
+const allowedOriginsEnv = Deno.env.get("ALLOWED_ORIGINS") || "";
+const ALLOWED_ORIGINS = allowedOriginsEnv
+  .split(",")
+  .map((url) => url.trim())
+  .filter((url) => url.length > 0);
+
+console.log("Allowed Origins:", ALLOWED_ORIGINS);
+
+app.use(
+  cors({
+    origin: (
+      origin: string | undefined,
+      callback: (err: Error | null, allow?: boolean) => void,
+    ) => {
+      // Allow if origin is in list OR if matching allowed patterns
+      if (!origin || ALLOWED_ORIGINS.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.warn(`[CORS] Blocked request from: ${origin}`);
+        callback(null, false);
+      }
+    },
+    credentials: true,
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "ngrok-skip-browser-warning",
+    ],
+  }),
+);
+
 app.use(express.json());
 
 // Initialize storage
@@ -202,6 +237,22 @@ app.get(
   },
 );
 
+// --- ENDPOINT 4: Graceful Shutdown (Admin Only) ---
+app.post("/api/admin/shutdown", checkAuth, async (_req: Request, res: Response) => {
+  logger.warn("🛑 Remote shutdown requested via API...", DColors.yellow);
+
+  // Send the specific "Shutdown Requested" notification
+  await telegramBot.notifyStop("Shutdown Requested via API (server-stop.bat)");
+
+  res.status(200).json({ success: true, message: "Server shutting down..." });
+
+  // Wait briefly to allow the response to be sent, then exit
+  setTimeout(() => {
+    logger.info("👋 Exiting process now.", DColors.red);
+    Deno.exit(0);
+  }, 1000);
+});
+
 // --- 404 Handler ---
 app.use((_req: Request, res: Response) => {
   res.status(404).json({ error: "Not Found" });
@@ -273,15 +324,42 @@ const decoder = new TextDecoder();
   }
 })();
 
-// Graceful shutdown on Ctrl+C
-addEventListener("SIGINT", () => {
+// —————————————————————————————————————————————
+// GLOBAL ERROR & SHUTDOWN HANDLERS
+// —————————————————————————————————————————————
+
+// 1. Graceful Shutdown (SIGINT)
+Deno.addSignalListener("SIGINT", async () => {
   logger.info("\n🛑 SIGINT received, shutting down...", DColors.yellow);
+  await telegramBot.notifyStop("SIGINT (Ctrl+C)");
   try {
     ngrokProcess.kill("SIGTERM");
   } catch {
     // ignore
   }
   Deno.exit(0);
+});
+
+// 2. Windows Close / Kill (SIGTERM, SIGHUP, etc. are tricky in Deno/Windows, 
+// using 'unload' event for best effort on some platforms, but reliability varies)
+globalThis.addEventListener("unload", () => {
+  // Cannot await here, but can try sync cleanup or logging
+  console.log("🛑 Server unloading...");
+});
+
+// Since Deno on Windows might not catch SIGTERM easily, we rely on SIGINT or manual stops.
+// However, we can catch unhandled rejections to prevent silent crashes and notify.
+
+globalThis.addEventListener("unhandledrejection", (e) => {
+  logger.error("Unhandled Rejection:", e.reason);
+  telegramBot.notifyError("Unhandled Rejection", e.reason);
+  e.preventDefault();
+});
+
+globalThis.addEventListener("error", (e) => {
+  logger.error("Uncaught Exception:", e.error);
+  telegramBot.notifyError("Uncaught Exception", e.error);
+  e.preventDefault();
 });
 
 logger.info("🚀 All systems running. Use Ctrl+C to stop.", DColors.green);
@@ -310,14 +388,18 @@ async function initializeJobs() {
       } else {
         logger.error(
           `❌ [${jobName}] Initial job failed: ${result.reason}`,
-          DColors.red,
-        );
+          result.reason
+        ); // Passed error object for logging
       }
     });
 
     logger.info("✅ Initial jobs completed", DColors.green);
+
+    // Notify via Telegram that server is fully ready
+    await telegramBot.notifyStart();
+
   } catch (error) {
-    logger.error(`❌ Error during initial jobs: ${error}`, DColors.red);
+    logger.error(`❌ Error during initial jobs: ${error}`, error);
   }
 }
 
@@ -346,9 +428,9 @@ async function triggerJob(jobName: string) {
     if (res.status === 202) {
       logger.info(`✅ [CRON] ${jobName} triggered successfully`, DColors.green);
     } else if (res.status === 404) {
-      logger.error(`❌ [CRON] ${jobName} not found (404)`, DColors.red);
+      logger.error(`❌ [CRON] ${jobName} not found (404)`, new Error("Not Found"));
     } else if (res.status === 401) {
-      logger.error(`❌ [CRON] ${jobName} unauthorized (401)`, DColors.red);
+      logger.error(`❌ [CRON] ${jobName} unauthorized (401)`, new Error("Unauthorized"));
     } else {
       const text = await res.text();
       logger.warn(
@@ -359,7 +441,7 @@ async function triggerJob(jobName: string) {
   } catch (e) {
     logger.error(
       `❌ [CRON] ${jobName} failed: ${(e as Error).message}`,
-      DColors.red,
+      e,
     );
   }
 }

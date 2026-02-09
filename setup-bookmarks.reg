@@ -1,0 +1,22 @@
+Windows Registry Editor Version 5.00
+
+; --- START PROTOCOL (kline-start://) ---
+[HKEY_CLASSES_ROOT\kline-start]
+@="URL:Kline Start Protocol"
+"URL Protocol"=""
+
+[HKEY_CLASSES_ROOT\kline-start\shell]
+[HKEY_CLASSES_ROOT\kline-start\shell\open]
+[HKEY_CLASSES_ROOT\kline-start\shell\open\command]
+@="wscript.exe \"d:\\GitHub\\Local-Kline-Data-Provider\\start-silent.vbs\""
+
+; --- STOP PROTOCOL (kline-stop://) ---
+[HKEY_CLASSES_ROOT\kline-stop]
+@="URL:Kline Stop Protocol"
+"URL Protocol"=""
+
+[HKEY_CLASSES_ROOT\kline-stop\shell]
+[HKEY_CLASSES_ROOT\kline-stop\shell\open]
+[HKEY_CLASSES_ROOT\kline-stop\shell\open\command]
+; Run server-stop.bat via cmd /c to ensure it executes and closes
+@="cmd /c \"d:\\GitHub\\Local-Kline-Data-Provider\\server-stop.bat\""

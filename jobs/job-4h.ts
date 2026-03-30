@@ -14,6 +14,7 @@ import { logger } from "../core/utils/logger.ts";
 import { DataStore } from "../store/store.ts";
 import { CONFIG } from "../config.ts";
 import { indicatorPipeline } from "../services/indicator-pipeline.ts";
+import { metricAlertService } from "../services/metrics/metric-alert.service.ts";
 
 /**
  * Cron Job для 4h таймфрейма
@@ -107,10 +108,10 @@ export async function run4hJob(): Promise<JobResult> {
       data: enriched4h,
     };
 
-    // DISABLED: Indicator calculations to reduce response size
-    // const processedData = await indicatorPipeline.process(marketData4h);
-
     await DataStore.save("4h", marketData4h);
+
+    const processedData = await indicatorPipeline.process(marketData4h);
+    await metricAlertService.check(processedData);
 
     logger.info(
       `[JOB 4h] ✓ Saved 4h: ${enriched4h.length} coins in ${Date.now() - stepTime

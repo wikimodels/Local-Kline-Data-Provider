@@ -49,8 +49,8 @@ export const CONFIG = {
    * --- THROTTLING (Rate limiting) ---
    */
   THROTTLING: {
-    BATCH_SIZE: 10,
-    DELAY_MS: 300,
+    BATCH_SIZE: 7,
+    DELAY_MS: 400,
   },
 
   /**

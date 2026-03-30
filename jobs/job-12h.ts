@@ -13,6 +13,7 @@ import { logger } from "../core/utils/logger.ts";
 import { DataStore } from "../store/store.ts";
 import { CONFIG } from "../config.ts";
 import { indicatorPipeline } from "../services/indicator-pipeline.ts";
+import { metricAlertService } from "../services/metrics/metric-alert.service.ts";
 
 /**
  * Cron Job для 12h таймфрейма
@@ -73,10 +74,10 @@ export async function run12hJob(): Promise<JobResult> {
       data: enriched1h,
     };
 
-    // DISABLED: Indicator calculations to reduce response size
-    // const processedData1h = await indicatorPipeline.process(marketData1h);
-
     await DataStore.save("1h" as TF, marketData1h);
+
+    const processedData1h = await indicatorPipeline.process(marketData1h);
+    await metricAlertService.check(processedData1h);
 
     logger.info(
       `[JOB 12h] ✓Saved 1h: ${enriched1h.length} coins`,
@@ -116,10 +117,10 @@ export async function run12hJob(): Promise<JobResult> {
       data: enriched12h,
     };
 
-    // DISABLED: Indicator calculations to reduce response size
-    // const processedData12h = await indicatorPipeline.process(marketData12h);
-
     await DataStore.save("12h" as TF, marketData12h);
+
+    const processedData12h = await indicatorPipeline.process(marketData12h);
+    await metricAlertService.check(processedData12h);
 
     logger.info(
       `[JOB 12h] ✓Saved 12h: ${enriched12h.length} coins`,

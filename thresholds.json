@@ -1,0 +1,1223 @@
+[
+    {
+        "category": "EMA Dynamic Events (Breakouts)",
+        "key": "ema50_breakdown",
+        "title": "EMA 50 Breakdown",
+        "description": "Percentage of assets crossing below the 50-period EMA, signaling an immediate local bearish shift.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 5,
+                "count": 15.3
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 5,
+                "count": 0
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 5,
+                "count": 0.8
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 5,
+                "count": 0.8
+            },
+            {
+                "timeframe": "D",
+                "threshold": 5,
+                "count": 1.5
+            }
+        ]
+    },
+    {
+        "category": "EMA Dynamic Events (Breakouts)",
+        "key": "ema100_breakdown",
+        "title": "EMA 100 Breakdown",
+        "description": "Percentage of assets crossing below the 100-period EMA, signaling medium-term trend deterioration.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 5,
+                "count": 19.1
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 5,
+                "count": 0
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 5,
+                "count": 0
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 5,
+                "count": 0
+            },
+            {
+                "timeframe": "D",
+                "threshold": 5,
+                "count": 0
+            }
+        ]
+    },
+    {
+        "category": "EMA Dynamic Events (Breakouts)",
+        "key": "ema150_breakdown",
+        "title": "EMA 150 Breakdown",
+        "description": "Percentage of assets crossing below the 150-period EMA, signaling a major structural bearish shift.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 5,
+                "count": 10.7
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 5,
+                "count": 0
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 5,
+                "count": 0
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 5,
+                "count": 0
+            },
+            {
+                "timeframe": "D",
+                "threshold": 5,
+                "count": 0
+            }
+        ]
+    },
+    {
+        "category": "EMA Dynamic Events (Breakouts)",
+        "key": "ema50_breakup",
+        "title": "EMA 50 Breakup",
+        "description": "Percentage of assets crossing above the 50-period EMA, signaling an immediate local bullish recovery.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 5,
+                "count": 0.8
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 5,
+                "count": 6.1
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 5,
+                "count": 0
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 5,
+                "count": 2.3
+            },
+            {
+                "timeframe": "D",
+                "threshold": 5,
+                "count": 1.5
+            }
+        ]
+    },
+    {
+        "category": "EMA Dynamic Events (Breakouts)",
+        "key": "ema100_breakup",
+        "title": "EMA 100 Breakup",
+        "description": "Percentage of assets crossing above the 100-period EMA, signaling medium-term trend strengthening.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 5,
+                "count": 0
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 5,
+                "count": 4.6
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 5,
+                "count": 0.8
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 5,
+                "count": 0.8
+            },
+            {
+                "timeframe": "D",
+                "threshold": 5,
+                "count": 1.5
+            }
+        ]
+    },
+    {
+        "category": "EMA Dynamic Events (Breakouts)",
+        "key": "ema150_breakup",
+        "title": "EMA 150 Breakup",
+        "description": "Percentage of assets crossing above the 150-period EMA, signaling a major structural bullish shift.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 5,
+                "count": 0
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 5,
+                "count": 3.8
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 5,
+                "count": 0
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 5,
+                "count": 0.8
+            },
+            {
+                "timeframe": "D",
+                "threshold": 5,
+                "count": 0.8
+            }
+        ]
+    },
+    {
+        "category": "EMA Fan Structure (50-100-150 Alignment)",
+        "key": "ema_bullish_fan",
+        "title": "EMA Bullish Fan",
+        "description": "Measures the percentage of the market exhibiting a perfectly aligned bullish trend (Price > EMA50 > EMA100 > EMA150).",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 40,
+                "count": 3.8
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 40,
+                "count": 7.6
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 40,
+                "count": 3.1
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 40,
+                "count": 1.5
+            },
+            {
+                "timeframe": "D",
+                "threshold": 40,
+                "count": 0
+            }
+        ]
+    },
+    {
+        "category": "EMA Fan Structure (50-100-150 Alignment)",
+        "key": "ema_bearish_fan",
+        "title": "EMA Bearish Fan",
+        "description": "Measures the percentage of the market exhibiting a perfectly aligned bearish trend (Price < EMA50 < EMA100 < EMA150).",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 40,
+                "count": 93.1
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 40,
+                "count": 87.8
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 40,
+                "count": 92.4
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 40,
+                "count": 94.7
+            },
+            {
+                "timeframe": "D",
+                "threshold": 40,
+                "count": 100
+            }
+        ]
+    },
+    {
+        "category": "EMA Fan Structure (50-100-150 Alignment)",
+        "key": "ema_fan_reversals",
+        "title": "EMA Fan Reversals",
+        "description": "Detects assets that are piercing through the EMA fan structure, indicating the very beginning of a trend reversal.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 10,
+                "count": 0
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 10,
+                "count": 4.6
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 10,
+                "count": 1.5
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 10,
+                "count": 0.8
+            },
+            {
+                "timeframe": "D",
+                "threshold": 10,
+                "count": 0
+            }
+        ]
+    },
+    {
+        "category": "Market EMA Regime (Trend Depth)",
+        "key": "above_50",
+        "title": "Price Above EMA 50",
+        "description": "Percentage of assets trading above their 50-period EMA. Identifies short-term trend dominance.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 75,
+                "count": 74
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 75,
+                "count": 3.1
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 75,
+                "count": 3.8
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 75,
+                "count": 6.9
+            },
+            {
+                "timeframe": "D",
+                "threshold": 75,
+                "count": 2.3
+            }
+        ]
+    },
+    {
+        "category": "Market EMA Regime (Trend Depth)",
+        "key": "above_100",
+        "title": "Price Above EMA 100",
+        "description": "Percentage of assets trading above their 100-period EMA. Identifies medium-term trend dominance.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 70,
+                "count": 32.8
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 70,
+                "count": 3.8
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 70,
+                "count": 5.3
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 70,
+                "count": 3.8
+            },
+            {
+                "timeframe": "D",
+                "threshold": 70,
+                "count": 0.8
+            }
+        ]
+    },
+    {
+        "category": "Market EMA Regime (Trend Depth)",
+        "key": "above_150",
+        "title": "Price Above EMA 150",
+        "description": "Percentage of assets trading above their 150-period EMA. Identifies long-term structural trend dominance.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 65,
+                "count": 16
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 65,
+                "count": 5.3
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 65,
+                "count": 4.6
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 65,
+                "count": 2.3
+            },
+            {
+                "timeframe": "D",
+                "threshold": 65,
+                "count": 0
+            }
+        ]
+    },
+    {
+        "category": "Market EMA Regime (Trend Depth)",
+        "key": "below_50",
+        "title": "Price Below EMA 50",
+        "description": "Percentage of assets trading below their 50-period EMA.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 75,
+                "count": 9.9
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 75,
+                "count": 90.8
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 75,
+                "count": 95.4
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 75,
+                "count": 90.1
+            },
+            {
+                "timeframe": "D",
+                "threshold": 75,
+                "count": 94.7
+            }
+        ]
+    },
+    {
+        "category": "Market EMA Regime (Trend Depth)",
+        "key": "below_100",
+        "title": "Price Below EMA 100",
+        "description": "Percentage of assets trading below their 100-period EMA.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 70,
+                "count": 46.6
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 70,
+                "count": 91.6
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 70,
+                "count": 93.9
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 70,
+                "count": 95.4
+            },
+            {
+                "timeframe": "D",
+                "threshold": 70,
+                "count": 97.7
+            }
+        ]
+    },
+    {
+        "category": "Market EMA Regime (Trend Depth)",
+        "key": "below_150",
+        "title": "Price Below EMA 150",
+        "description": "Percentage of assets trading below their 150-period EMA.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 65,
+                "count": 72.5
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 65,
+                "count": 90.8
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 65,
+                "count": 95.4
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 65,
+                "count": 96.9
+            },
+            {
+                "timeframe": "D",
+                "threshold": 65,
+                "count": 99.2
+            }
+        ]
+    },
+    {
+        "category": "Market Extremum Breakouts (New Highs vs New Lows)",
+        "key": "new_high50",
+        "title": "New High (50 Bars)",
+        "description": "Detects assets breaking their 50-period highest peak, indicating strong local upward thrusts.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 10,
+                "count": 0.8
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 10,
+                "count": 0.8
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 10,
+                "count": 0
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 10,
+                "count": 0
+            },
+            {
+                "timeframe": "D",
+                "threshold": 10,
+                "count": 0
+            }
+        ]
+    },
+    {
+        "category": "Market Extremum Breakouts (New Highs vs New Lows)",
+        "key": "new_high100",
+        "title": "New High (100 Bars)",
+        "description": "Detects assets breaking their 100-period highest peak, signaling substantial bullish momentum breakouts.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 8,
+                "count": 0.8
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 8,
+                "count": 0.8
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 8,
+                "count": 0
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 8,
+                "count": 0
+            },
+            {
+                "timeframe": "D",
+                "threshold": 8,
+                "count": 0
+            }
+        ]
+    },
+    {
+        "category": "Market Extremum Breakouts (New Highs vs New Lows)",
+        "key": "new_low50",
+        "title": "New Low (50 Bars)",
+        "description": "Detects assets breaking their 50-period lowest trough, indicating strong local downward thrusts.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 10,
+                "count": 0
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 10,
+                "count": 0
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 10,
+                "count": 22.9
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 10,
+                "count": 17.6
+            },
+            {
+                "timeframe": "D",
+                "threshold": 10,
+                "count": 13.7
+            }
+        ]
+    },
+    {
+        "category": "Market Extremum Breakouts (New Highs vs New Lows)",
+        "key": "new_low100",
+        "title": "New Low (100 Bars)",
+        "description": "Detects assets breaking their 100-period lowest trough, signaling substantial bearish momentum breakdowns.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 8,
+                "count": 0
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 8,
+                "count": 0
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 8,
+                "count": 16
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 8,
+                "count": 13
+            },
+            {
+                "timeframe": "D",
+                "threshold": 8,
+                "count": 13.7
+            }
+        ]
+    },
+    {
+        "category": "KAMA Crosses",
+        "key": "kama_crossup",
+        "title": "KAMA Cross Up",
+        "description": "Identifies assets crossing above Kaufman's Adaptive Moving Average, indicating a potential volatility-adjusted bullish breakout.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 10,
+                "count": 0
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 10,
+                "count": 49.6
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 10,
+                "count": 2.3
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 10,
+                "count": 1.5
+            },
+            {
+                "timeframe": "D",
+                "threshold": 10,
+                "count": 0.8
+            }
+        ]
+    },
+    {
+        "category": "KAMA Crosses",
+        "key": "kama_crossdown",
+        "title": "KAMA Cross Down",
+        "description": "Identifies assets crossing below Kaufman's Adaptive Moving Average, indicating a potential volatility-adjusted bearish breakdown.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 10,
+                "count": 7.6
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 10,
+                "count": 0
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 10,
+                "count": 2.3
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 10,
+                "count": 1.5
+            },
+            {
+                "timeframe": "D",
+                "threshold": 10,
+                "count": 1.5
+            }
+        ]
+    },
+    {
+        "category": "MACD Momentum Impulse",
+        "key": "macd_fading_bull",
+        "title": "MACD Fading Bull",
+        "description": "Highlights fading bullish momentum where the positive MACD histogram creates a lower peak than the prior period.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 25,
+                "count": 90.8
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 25,
+                "count": 0.8
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 25,
+                "count": 6.9
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 25,
+                "count": 3.1
+            },
+            {
+                "timeframe": "D",
+                "threshold": 25,
+                "count": 7.6
+            }
+        ]
+    },
+    {
+        "category": "MACD Momentum Impulse",
+        "key": "macd_fading_bear",
+        "title": "MACD Fading Bear",
+        "description": "Highlights fading bearish momentum where the negative MACD histogram creates a higher peak than the prior period.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 25,
+                "count": 0
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 25,
+                "count": 35.1
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 25,
+                "count": 48.9
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 25,
+                "count": 56.5
+            },
+            {
+                "timeframe": "D",
+                "threshold": 25,
+                "count": 6.1
+            }
+        ]
+    },
+    {
+        "category": "Market Orderflow Regime (Accumulation vs Liquidation)",
+        "key": "long_acc",
+        "title": "Long Accumulation",
+        "description": "Detects coordinated accumulation behavior across the market driven by aggressive buying volume.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 15,
+                "count": 18.3
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 15,
+                "count": 32.1
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 15,
+                "count": 25.2
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 15,
+                "count": 9.2
+            },
+            {
+                "timeframe": "D",
+                "threshold": 15,
+                "count": 6.1
+            }
+        ]
+    },
+    {
+        "category": "Market Pattern Radar (Sentiment Structure)",
+        "key": "pinbars",
+        "title": "Pinbars",
+        "description": "Identifies the formation of pinbar candlestick patterns, indicating sudden rejection of price levels.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 15,
+                "count": 1.5
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 15,
+                "count": 0.8
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 15,
+                "count": 0.8
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 15,
+                "count": 4.6
+            },
+            {
+                "timeframe": "D",
+                "threshold": 15,
+                "count": 5.3
+            }
+        ]
+    },
+    {
+        "category": "Market Pattern Radar (Sentiment Structure)",
+        "key": "hammers",
+        "title": "Hammers",
+        "description": "Identifies bottoming hammer candlesticks, signaling strong buying pressure rejecting lower prices.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 15,
+                "count": 1.5
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 15,
+                "count": 0
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 15,
+                "count": 17.6
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 15,
+                "count": 0
+            },
+            {
+                "timeframe": "D",
+                "threshold": 15,
+                "count": 0
+            }
+        ]
+    },
+    {
+        "category": "Market Pattern Radar (Sentiment Structure)",
+        "key": "bearish_engulfing",
+        "title": "Bearish Engulfing",
+        "description": "Signals a massive bearish sentiment shift where sellers completely overwhelm the previous buying period.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 15,
+                "count": 5.3
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 15,
+                "count": 0
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 15,
+                "count": 0
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 15,
+                "count": 1.5
+            },
+            {
+                "timeframe": "D",
+                "threshold": 15,
+                "count": 0
+            }
+        ]
+    },
+    {
+        "category": "Market Pattern Radar (Sentiment Structure)",
+        "key": "bullish_engulfing",
+        "title": "Bullish Engulfing",
+        "description": "Signals a massive bullish sentiment shift where buyers completely overwhelm the previous selling period.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 15,
+                "count": 0
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 15,
+                "count": 0
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 15,
+                "count": 0
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 15,
+                "count": 2.3
+            },
+            {
+                "timeframe": "D",
+                "threshold": 15,
+                "count": 0
+            }
+        ]
+    },
+    {
+        "category": "Aggregated Sentiments",
+        "key": "rsi_median",
+        "title": "RSI Median",
+        "description": "Aggregated RSI representation to show market-wide overbought (FOMO) or oversold (Panic) states.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 70,
+                "count": 58.17
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 70,
+                "count": 48.27
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 70,
+                "count": 29
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 70,
+                "count": 31.06
+            },
+            {
+                "timeframe": "D",
+                "threshold": 70,
+                "count": 35.24
+            }
+        ]
+    },
+    {
+        "category": "Aggregated Sentiments",
+        "key": "vzo_median",
+        "title": "VZO Median",
+        "description": "Volume Zone Oscillator median across the market. High values indicate extreme broad-market volume momentum.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 40,
+                "count": 8.57
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 40,
+                "count": -8.84
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 40,
+                "count": -28.15
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 40,
+                "count": -23.72
+            },
+            {
+                "timeframe": "D",
+                "threshold": 40,
+                "count": -15.44
+            }
+        ]
+    },
+    {
+        "category": "RVWAP 1SD Divergence",
+        "key": "vzo_slope",
+        "title": "VZO Slope Divergence",
+        "description": "Flags assets displaying bearish divergence between RVWAP price positioning and VZO Slope trajectory.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 10,
+                "count": 2.3
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 10,
+                "count": 0.8
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 10,
+                "count": 0
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 10,
+                "count": 0
+            },
+            {
+                "timeframe": "D",
+                "threshold": 10,
+                "count": 0
+            }
+        ]
+    },
+    {
+        "category": "Market RVWAP Structure (Bands Depth: FOMO to Panic)",
+        "key": "strong_bull",
+        "title": "Strong Bull Regime",
+        "description": "Percentage of assets maintaining structural strength by holding above the RVWAP +1SD Upper Band.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 20,
+                "count": 21.4
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 20,
+                "count": 2.3
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 20,
+                "count": 0
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 20,
+                "count": 0.8
+            },
+            {
+                "timeframe": "D",
+                "threshold": 20,
+                "count": 8.4
+            }
+        ]
+    },
+    {
+        "category": "Market RVWAP Structure (Bands Depth: FOMO to Panic)",
+        "key": "fomo",
+        "title": "FOMO Phase",
+        "description": "Percentage of assets experiencing absolute FOMO euphoria, trading excessively above the RVWAP +2SD Band.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 15,
+                "count": 1.5
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 15,
+                "count": 0
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 15,
+                "count": 0
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 15,
+                "count": 0
+            },
+            {
+                "timeframe": "D",
+                "threshold": 15,
+                "count": 8.4
+            }
+        ]
+    },
+    {
+        "category": "Trend Rollover: Structure vs Momentum Divergence",
+        "key": "bearish_exhaustion",
+        "title": "Bearish Exhaustion",
+        "description": "Detects assets with heavy bearish exhaustion and high structural risk of forming a local top.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 10,
+                "count": 19.1
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 10,
+                "count": 0
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 10,
+                "count": 0
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 10,
+                "count": 0
+            },
+            {
+                "timeframe": "D",
+                "threshold": 10,
+                "count": 1.5
+            }
+        ]
+    },
+    {
+        "category": "Trend Rollover: Structure vs Momentum Divergence",
+        "key": "bullish_exhaustion",
+        "title": "Bullish Exhaustion",
+        "description": "Detects assets with significant bullish exhaustion and high chances of initiating a local bottom reversal.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 10,
+                "count": 0
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 10,
+                "count": 3.1
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 10,
+                "count": 18.3
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 10,
+                "count": 14.5
+            },
+            {
+                "timeframe": "D",
+                "threshold": 10,
+                "count": 2.3
+            }
+        ]
+    },
+    {
+        "category": "Market Anomalies (Z-Score > 2σ)",
+        "key": "funding",
+        "title": "Funding Rate Anomalies",
+        "description": "Percentage of assets with extreme Funding Rate Z-Scores (>= 2σ), indicating massive derivatives market imbalance.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 5,
+                "count": 10
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 5,
+                "count": 3.8
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 5,
+                "count": 9.2
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 5,
+                "count": 10
+            },
+            {
+                "timeframe": "D",
+                "threshold": 5,
+                "count": 10
+            }
+        ]
+    },
+    {
+        "category": "Market Anomalies (Z-Score > 2σ)",
+        "key": "oi",
+        "title": "Open Interest Anomalies",
+        "description": "Percentage of assets with extreme Open Interest Z-Scores (>= 2σ), indicating unsustainable buildup of trading positions.",
+        "metrics": [
+            {
+                "timeframe": "1h",
+                "threshold": 5,
+                "count": 10
+            },
+            {
+                "timeframe": "4h",
+                "threshold": 5,
+                "count": 10
+            },
+            {
+                "timeframe": "8h",
+                "threshold": 5,
+                "count": 10
+            },
+            {
+                "timeframe": "12h",
+                "threshold": 5,
+                "count": 10
+            },
+            {
+                "timeframe": "D",
+                "threshold": 5,
+                "count": 10
+            }
+        ]
+    }
+]

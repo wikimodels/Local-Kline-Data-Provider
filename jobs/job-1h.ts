@@ -13,6 +13,7 @@ import { logger } from "../core/utils/logger.ts";
 import { DataStore } from "../store/store.ts";
 import { CONFIG } from "../config.ts";
 import { indicatorPipeline } from "../services/indicator-pipeline.ts";
+import { metricAlertService } from "../services/metrics/metric-alert.service.ts";
 
 /**
  * Cron Job для 1h таймфрейма
@@ -68,11 +69,12 @@ export async function run1hJob(): Promise<JobResult> {
       data: enriched1h,
     };
 
-    // DISABLED: Indicator calculations to reduce response size
-    // const processedData = await indicatorPipeline.process(marketData);
-
     // 6. Save to DataStore (raw data without indicators)
     await DataStore.save("1h" as TF, marketData);
+
+    // 7. Compute indicators and run metric alerts
+    const processedData = await indicatorPipeline.process(marketData);
+    await metricAlertService.check(processedData);
 
     const executionTime = Date.now() - startTime;
 

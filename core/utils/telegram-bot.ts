@@ -78,6 +78,14 @@ export class TelegramBot {
         await this.send(msg);
     }
 
+    /**
+     * Sends a pre-formatted HTML metric alert message.
+     * The caller is responsible for building the full message string.
+     */
+    public async notifyMetricAlert(message: string): Promise<void> {
+        await this.send(message);
+    }
+
     public async notifyError(message: string, error?: unknown): Promise<void> {
         let errorDetails = "";
         if (error instanceof Error) {
